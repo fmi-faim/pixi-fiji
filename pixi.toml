@@ -1,0 +1,31 @@
+[project]
+authors = ["Jan Eglinger <jan.eglinger@fmi.ch>"]
+channels = ["conda-forge"]
+name = "pixi-fiji"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+pyimagej = ">=1.6.0,<2"
+
+[environments]
+java-8-fiji-215 = ["java8", "fiji215"]
+java-11-fiji-215 = ["java11", "fiji215"]
+java-8-fiji-216 = ["java8", "fiji216"]
+java-11-fiji-216 = ["java11", "fiji216"]
+
+[feature.java8.dependencies]
+openjdk = "8.*"
+
+[feature.java11.dependencies]
+openjdk = "11.*"
+
+[feature.fiji215.tasks]
+pyimagej = "python start_fiji.py 2.15.1"
+jgo = "python -m jgo sc.fiji:fiji:2.15.1"
+
+[feature.fiji216.tasks]
+pyimagej = "python start_fiji.py 2.16.0"
+jgo = "python -m jgo sc.fiji:fiji:2.16.0"
